@@ -21,15 +21,9 @@
     <ClCompile Include="ReadFromFile.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="DataProcessing.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReadFromFile.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="DataProcessing.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
