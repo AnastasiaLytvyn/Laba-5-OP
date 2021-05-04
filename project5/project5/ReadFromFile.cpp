@@ -2,8 +2,9 @@
 
 string ReadFromFile::GetName()
 {
-	cout << "Enter name of file: ";
-	cin >> fileName;
+	fileName = "file.txt";
+	//cout << "Enter name of file: ";
+	//cin >> fileName;
 	return fileName;
 }
 
@@ -21,6 +22,7 @@ vector<string> ReadFromFile::ReadInfo()
 		while (!file.eof())
 		{
 			getline(file, str);
+			str = str.substr(0, str.length() - 1);
 			strings.push_back(str);
 		}
 	}
