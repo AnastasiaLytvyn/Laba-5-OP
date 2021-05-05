@@ -145,6 +145,7 @@
     <ClCompile Include="ShuntingYard.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AST.h" />
     <ClInclude Include="ReadFromFile.h" />
     <ClInclude Include="RPN.h" />
     <ClInclude Include="ShuntingYard.h" />

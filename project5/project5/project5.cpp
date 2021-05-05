@@ -1,7 +1,14 @@
 ﻿#include <iostream>
 #include "ReadFromFile.h"
 #include "RPN.h"
+#include "ShuntingYard.h"
+#include "AST.h"
+
+
 using namespace std;
+
+
+
 
 int main()
 {
@@ -13,8 +20,13 @@ int main()
 		cout << info[i] << " ";
 	}
 	cout << endl;
-	RPN str;
-	string RPN = str.GetRPNstring(info);
+	//RPN str;
+	//string RPN = str.GetRPNstring(info);
+	ShuntingYard tree;
+	Node* done;
+
+	done=tree.DataProcessing(info);
+
 	return 0;
 }
 

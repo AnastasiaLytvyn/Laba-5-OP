@@ -4,12 +4,15 @@
 #include <string>
 #include <stack>
 #include <map>
+#include "AST.h"
 
 using namespace std;
+
 
 class ShuntingYard
 {
 public:
-	map<string, int> OperatorsMap();
-	void DataProcessing(vector<string>);
+    map<char, int> OperatorsMap();
+    Node* DataProcessing(vector<string>);
 };
+
