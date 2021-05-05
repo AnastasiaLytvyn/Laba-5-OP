@@ -15,7 +15,6 @@ map<string, int> ShuntingYard::OperatorsMap()
 void ShuntingYard::DataProcessing(vector<string> info)
 {
     map<string, int> operatorsNpriority = OperatorsMap();
-    map<string, int>::iterator it = operatorsNpriority.begin();
     stack<char> operators;
     string operation, popped;
     for (int i = 0; i < info.size(); i++)
@@ -39,15 +38,33 @@ void ShuntingYard::DataProcessing(vector<string> info)
                 }
 
             }
+            break;/////
         default:
             if (operatorsNpriority.count(operation))
             {
+                map<string, int>::iterator firstit = operatorsNpriority.begin();
+                map<string, int>::iterator secondit = operatorsNpriority.begin();
+
                 char first = operation[0];
                 char second;
                 while (!operators.empty() && (second = operators.top()))
                 {
-                    ///// логика с приоритетностью
+                    string secondoperator = "";
+                    secondoperator += second;
+                    firstit = operatorsNpriority.find(operation);
+                    secondit = operatorsNpriority.find(secondoperator);
+                    if (firstit->second <= secondit->second)
+                    {
+                        operators.pop();
+                        ////// added new node
+                    }
+                    else break;
                 }
+                operators.push(first);
+            }
+            else
+            {
+                ///// added new node
             }
             break;
         }
