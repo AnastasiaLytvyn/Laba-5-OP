@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AST.cpp" />
     <ClCompile Include="project5.cpp" />
     <ClCompile Include="ReadFromFile.cpp" />
     <ClCompile Include="RPN.cpp" />

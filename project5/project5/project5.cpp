@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include "ReadFromFile.h"
-#include "RPN.h"
-#include "ShuntingYard.h"
+//#include "RPN.h"
+//#include "ShuntingYard.h"
 #include "AST.h"
 
 
@@ -15,18 +15,21 @@ int main()
 	ReadFromFile file;
 	file.GetName();
 	vector<string> info = file.ReadInfo();
-	for (size_t i = 0; i < info.size(); i++)
-	{
-		cout << info[i] << " ";
-	}
-	cout << endl;
+	//for (size_t i = 0; i < info.size(); i++)
+	//{
+		//cout << info[i] << " ";
+	//}
+	//cout << endl;
 	//RPN str;
 	//string RPN = str.GetRPNstring(info);
-	ShuntingYard tree;
-	Node* done;
+	/*ShuntingYard tree;
+	Node* done;*/
+	//done=tree.DataProcessing(info);
 
-	done=tree.DataProcessing(info);
-
+	Node* root=NULL;
+	root=getNewNode("Start");
+	cout << root->data;
+	
 	return 0;
 }
 
