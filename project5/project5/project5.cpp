@@ -3,6 +3,8 @@
 //#include "RPN.h"
 //#include "ShuntingYard.h"
 #include "AST.h"
+#include <vector>
+#include <map>
 
 
 using namespace std;
@@ -15,34 +17,14 @@ int main()
 	ReadFromFile file;
 	file.GetName();
 	vector<string> info = file.ReadInfo();
-	//for (size_t i = 0; i < info.size(); i++)
-	//{
-		//cout << info[i] << " ";
-	//}
-	//cout << endl;
-	//RPN str;
-	//string RPN = str.GetRPNstring(info);
-	/*ShuntingYard tree;
-	Node* done;*/
-	//done=tree.DataProcessing(info);
-
-	/*
-	a=b=4
-	a=b+4
-	*/
 	Node* root=NULL;
 	root=getNewNode("Start");
-	Insert(root, "a=5");
-	Insert(root, "b=c=4+8*2/1-1");
-	Insert(root, "a+b+c");
-
-
-
-	/*cout << root->son->brother->data<<endl;
-	cout << root->son->brother->son->data << endl;
-	cout << root->son->brother->son->brother->data << endl;
-
-	*/
+	for (int i = 0; i < info.size(); i++) {
+		Insert(root, info[i]);
+	}
+	
+	calculate(root,info);
+	
 	return 0;
 }
 

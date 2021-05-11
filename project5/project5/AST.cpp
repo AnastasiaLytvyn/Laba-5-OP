@@ -1,5 +1,7 @@
 #include "AST.h"
 using namespace std;
+ map<string, float> variables;
+ map<string, float>::iterator it = variables.begin();
 
 Node* getNewNode(string data) {//creating new Node with data without future links
     Node* newNode = new Node();
@@ -147,8 +149,9 @@ void insertionEqualBrother(Node* root, string str, int toSon) {
     else {
         start = 0;
         int operationPrecedence = getOperationPrecedence(str[getOperationIndex(str, start)]);
+        start = -1;
         while (operationPrecedence != 2) {
-            start = getOperationIndex(str, start);
+            start = getOperationIndex(str, start+1);
             if (start > 0) {
                 operationPrecedence = getOperationPrecedence(str[getOperationIndex(str, start)]);
             }
@@ -172,6 +175,7 @@ void insertionEqualBrother(Node* root, string str, int toSon) {
             return;
         }
         else {
+            start = 0;
             int plusIndex = getPlusIndex(str, start);
             start = str.rfind('=')+1;
             while (plusIndex > 0) {
@@ -201,4 +205,77 @@ void insertionEqualBrother(Node* root, string str, int toSon) {
             }
         }
     }
+}
+
+float getNodeData(Node* root) {
+    if (root->data == "+") {
+        return getNodeData(root->son) + getNodeData(root->son->brother);
+    }
+    else if (root->data == "-") {
+        return getNodeData(root->son) - getNodeData(root->son->brother);
+    }
+    else if (root->data == "*") {
+        return getNodeData(root->son) * getNodeData(root->son->brother);
+    }
+    else if (root->data == "/") {
+        return getNodeData(root->son) / getNodeData(root->son->brother);
+    }
+    else {
+        if (isdigit(root->data[0])) {
+        return stof(root->data);
+        }
+        else {
+            if (variables.count(root->data) == 1) {
+                it = variables.find(root->data);
+                return it->second;
+            }
+            else {
+                cout << "Wrong variable"<<endl;
+            }
+        }
+    }
+}
+
+void whil312312e (Node* root, int i, vector<string> varVector) {
+    if (i != 0) {
+        for (int j = 0; j < i; j++) {
+            root = root->brother;
+        }
+    }
+    if (root->data == "=") {
+        root = root->son;
+        varVector.push_back(root->data);
+        while (root->brother->data == "=") {
+            varVector.push_back(root->brother->son->data);
+            root = root->brother->son;
+        }
+        float value = getNodeData(root->brother);
+        for (int j = 0; j < varVector.size(); j++) {
+            variables[varVector[j]] = value;
+            cout << value << endl;
+        }
+    }
+}
+
+float getResult(Node* root, int i) {
+    for (int j = 0; j < i; j++) {
+        root = root->brother;
+    }
+    float value = getNodeData(root);
+    return value;
+}
+
+void calculate(Node* root, vector<string> info) {
+    int i = 0;
+    
+    root = root->son;
+    vector<string> varVector;
+    
+    while (i < info.size()-1) {
+        whil312312e(root,i, varVector);
+        varVector.clear();
+        i++;
+    }
+    float result = getResult(root,i);
+    cout << "Result: " << result;
 }
