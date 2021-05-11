@@ -12,5 +12,7 @@ struct Node
     Node* brother;
 };
 
-Node* getNewNode(string data);
-Node* InsertNewLine(Node* root, string str);
+Node* getNewNode(string);
+void Insert(Node*, string);
+int getOperationIndex(string, int);
+void displayTree(Node*);

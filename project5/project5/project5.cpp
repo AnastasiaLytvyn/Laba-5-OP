@@ -26,10 +26,24 @@ int main()
 	Node* done;*/
 	//done=tree.DataProcessing(info);
 
+	/*
+	a=b=4
+	a=b+4
+	*/
 	Node* root=NULL;
 	root=getNewNode("Start");
-	cout << root->data;
-	
+	Insert(root, "a=5");
+	Insert(root, "b=4");
+	Insert(root, "a+b");
+
+
+	displayTree(root);
+
+	/*cout << root->son->brother->data<<endl;
+	cout << root->son->brother->son->data << endl;
+	cout << root->son->brother->son->brother->data << endl;
+
+	*/
 	return 0;
 }
 
