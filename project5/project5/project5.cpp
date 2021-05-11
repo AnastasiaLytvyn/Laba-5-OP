@@ -33,11 +33,10 @@ int main()
 	Node* root=NULL;
 	root=getNewNode("Start");
 	Insert(root, "a=5");
-	Insert(root, "b=4");
-	Insert(root, "a+b");
+	Insert(root, "b=c=4+8*2/1-1");
+	Insert(root, "a+b+c");
 
 
-	displayTree(root);
 
 	/*cout << root->son->brother->data<<endl;
 	cout << root->son->brother->son->data << endl;

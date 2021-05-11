@@ -1,4 +1,7 @@
 ﻿  AST.cpp
-C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\project5\AST.cpp(65,27): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\project5\AST.cpp(68): warning C4715: getOperationIndex: значение возвращается не при всех путях выполнения
+C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\project5\AST.cpp(43,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\project5\AST.cpp(64,27): warning C4018: <: несоответствие типов со знаком и без знака
+  project5.cpp
+  Создание кода...
+C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\project5\AST.cpp(80): warning C4715: getOperationPrecedence: значение возвращается не при всех путях выполнения
   project5.vcxproj -> C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\Debug\project5.exe
