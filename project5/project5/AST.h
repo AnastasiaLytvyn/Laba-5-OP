@@ -24,4 +24,4 @@ int getPlusIndex(string str, int start);
 int getPlusIndex(string str, int start, int end);
 void calculate(Node* root, vector<string>);
 void insertionEqualBrother(Node* root, string str, int toSon = 0);
-void insertionPlus(Node* root, string str, int start, int end);
+void insertionPlus(Node* root, string str, int start, int end, int toSon);

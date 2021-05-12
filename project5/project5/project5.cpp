@@ -21,9 +21,10 @@ int main()
 	root=getNewNode("Start");
 	for (int i = 0; i < info.size(); i++) {
 		Insert(root, info[i]);
+		cout << i;
 	}
 	
-	calculate(root,info);
+	//calculate(root,info);
 	
 	return 0;
 }
