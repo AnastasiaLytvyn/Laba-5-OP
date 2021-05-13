@@ -24,8 +24,6 @@ int main()
 		cout << i;
 	}
 	
-	//calculate(root,info);
-	
 	return 0;
 }
 
