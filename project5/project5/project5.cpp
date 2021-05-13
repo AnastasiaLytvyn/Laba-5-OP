@@ -21,7 +21,6 @@ int main()
 	root=getNewNode("Start");
 	for (int i = 0; i < info.size(); i++) {
 		Insert(root, info[i]);
-		cout << i;
 	}
 	
 	return 0;

@@ -1,6 +1,3 @@
-﻿  AST.cpp
-C:\Users\litvi\labs\n5\project5\project5\AST.cpp(367,27): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\litvi\labs\n5\project5\project5\AST.cpp(388,14): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\litvi\labs\n5\project5\project5\AST.cpp(76): warning C4715: getOperationPrecedence: значение возвращается не при всех путях выполнения
-C:\Users\litvi\labs\n5\project5\project5\AST.cpp(351): warning C4715: getNodeData: значение возвращается не при всех путях выполнения
+﻿  project5.cpp
+C:\Users\litvi\labs\n5\project5\project5\project5.cpp(22,20): warning C4018: <: несоответствие типов со знаком и без знака
   project5.vcxproj -> C:\Users\litvi\labs\n5\project5\Debug\project5.exe

@@ -56,9 +56,30 @@ int getPlusIndex(string str, int start) {
     
 }
 
+
+int getMultIndex(string str, int start) {
+    for (int i = str.length() - start - 1; i >= 0; i--) {
+        if (str[i] == '*' || str[i] == '/' || str[i] == '=') return i;
+    }
+    return -1;
+}
+
 int getPlusIndexLeft(string str, int start) {
     for (int i = 0; i < start; i++) {
         if (str[i] == '+' || str[i] == '-') return i;
+    }
+    return -1;
+}
+int getMultLeft(string str, int start) {
+    for (int i = 0; i < str.length(); i++) {
+        if (str[i] == '*' || str[i] == '/') return i;
+    }
+    return -1;
+}
+
+int getMultIndexSubstr(string str, int start) {
+    for (int i = start - 1; i >= 0; i--) {
+        if (str[i] == '*' || str[i] == '/' || str[i] == '=') return i;
     }
     return -1;
 }
@@ -103,26 +124,37 @@ void insertionPlus(Node* root, string str, int start, int end,int toSon) {
         int start2 = afterPlus.length()-1;
         root->son = getNewNode("");
         root = root->son;
+        int countmultind = 0;
         while (multIndex > 0) {
-            root->brother = getNewNode(afterPlus.substr(multIndex,1));
-            root = root->brother;
+            ++countmultind;
+            if (countmultind == 1)
+            {
+                root->brother = getNewNode(afterPlus.substr(multIndex,1));
+                root = root->brother;
+            }
+            else
+            {
+                root->data= afterPlus.substr(multIndex, 1);
+            }
             root->son = getNewNode("");
             root = root->son;
             root->brother = getNewNode(afterPlus.substr(multIndex+1, start2-multIndex));
             start2 = multIndex - 1;
-            multIndex = getOperationIndex(afterPlus, str.length()-start2);
+            multIndex = getMultIndexSubstr(afterPlus, start2);
         }
-        multIndex = getOperationIndex(afterPlus, start2 - 1);
+        if (start2 != 0)
+        {
+            multIndex = getOperationIndex(afterPlus, start2 - 1);
+        }
+        else
+        {
+            multIndex = getMultLeft(afterPlus, start2+1);
+        }
         root->data = afterPlus.substr(0,multIndex);
     }
 }
 
-int getMultIndex(string str, int start) {
-    for (int i = str.length() - start - 1; i >= 0; i--) {
-        if (str[i] == '*' || str[i] == '/' || str[i]=='=') return i;
-    }
-    return -1;
-}
+
 
 void insertionEqualBrother(Node* root, string str, int toSon) {
     int founded = getOperationIndex(str, 0);
@@ -177,30 +209,38 @@ void insertionEqualBrother(Node* root, string str, int toSon) {
                     root = root->son;
                 }
                 int multIndex = getMultIndex(between, equalIndex);
-                root->data = str.substr(multIndex, 1);
-                root->son = getNewNode("");
-                root = root->son;
-                root->brother = getNewNode(between.substr(multIndex+1));
-                int multIndex2 = getOperationIndex(between.substr(0, multIndex), 0);
-                string sonForMulti;
-                while (multIndex2 > 0) 
+                if (multIndex > 0)
                 {
-                    int founded = getMultIndex(between.substr(0, multIndex2), 0);
-                    if (founded>0)
-                    {
-                        sonForMulti = between.substr(founded);
-                    }
-                    else
-                    {
-                        sonForMulti = between.substr(0, multIndex2);
-                    }
-                    between = str.substr(multIndex2 + 1, multIndex - multIndex2-1);
-                    root->data = str.substr(multIndex2, 1);
-                    root->son = getNewNode(sonForMulti);//
+                    root->data = str.substr(multIndex, 1);
+                    root->son = getNewNode("");
                     root = root->son;
-                    root->brother = getNewNode(between);
-                    multIndex = multIndex2 - 1;
-                    multIndex2 = getOperationIndex(between.substr(multIndex), 0);
+                    root->brother = getNewNode(between.substr(multIndex + 1));
+                    int multIndex2 = getOperationIndex(between.substr(0, multIndex), 0);
+                    string sonForMulti;
+                    while (multIndex2 > 0)
+                    {
+                        int founded = getMultIndex(between.substr(0, multIndex2), 0);
+                        if (founded > 0)
+                        {
+                            sonForMulti = between.substr(founded);
+                        }
+                        else
+                        {
+                            sonForMulti = between.substr(0, multIndex2);
+                        }
+                        between = str.substr(multIndex2 + 1, multIndex - multIndex2 - 1);
+                        root->data = str.substr(multIndex2, 1);
+                        root->son = getNewNode(sonForMulti);//
+                        root = root->son;
+                        root->brother = getNewNode(between);
+                        multIndex = multIndex2 - 1;
+                        multIndex2 = getOperationIndex(between.substr(multIndex), 0);
+                    }
+                    root->data = between.substr(0, multIndex);
+                }
+                else
+                {
+                    root->data = between;
                 }
                 //after while
                //multIndex = getMultIndex(between, equalIndex);
