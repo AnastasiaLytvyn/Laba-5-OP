@@ -23,6 +23,7 @@ int main()
 		Insert(root, info[i]);
 	}
 	
+	calculate(root, info);
 	return 0;
 }
 

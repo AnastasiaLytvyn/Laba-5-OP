@@ -99,7 +99,7 @@ void insertionPlus(Node* root, string str, int start, int end,int toSon) {
     int plusIndex = start;
     string afterPlus = str.substr(plusIndex+1, end - plusIndex);
     if (toSon == 1) {
-        if (root->son->data == "") {
+        if (root->son != NULL && root->son->data == "") {
             root->son->data = str.substr(plusIndex, 1);
             root = root->son;
         }
@@ -174,8 +174,6 @@ void insertionEqualBrother(Node* root, string str, int toSon) {
     int equalIndex = str.rfind('=');
     if (equalIndex <= 0)
     {
-        if (isdigit(str[0])) 
-        {
             int plusIndex = getPlusIndex(str, 0);
             if (plusIndex <= 0) {
                 int multIndex = getMultIndex(str, 0);
@@ -261,16 +259,8 @@ void insertionEqualBrother(Node* root, string str, int toSon) {
                //multIndex = getMultIndex(between, equalIndex);
                // root->data = str.substr(0, multIndex);
             }
-        }
-        else {
-            if (variables.count(str) == 1) {
-                it = variables.find(str);
-                cout << "Result: " << it->second;
-            }
-            else {
-                cout << "Error";
-            }
-        }
+        
+        
     }
     else {
         if (founded <= 0) {
@@ -337,7 +327,12 @@ void insertionEqualBrother(Node* root, string str, int toSon) {
                 int plusIndex = getPlusIndex(str, 0);
                 int end = str.length() - 1;
                 insertionPlus(root, str, plusIndex, end, toSon);
+                if (toSon == 1) {
+                    root = root->son;
+                }
+                else {
                 root = root->brother;
+                }
                 while (plusIndex > 0 && str[plusIndex] != '=') {
                     end = plusIndex - 1;
                     plusIndex = getPlusIndex(str, str.length()-end);
@@ -395,6 +390,9 @@ float getNodeData(Node* root) {
     else if (root->data == "/") {
         return getNodeData(root->son) / getNodeData(root->son->brother);
     }
+    else if (root->data == "=") {
+        return getNodeData(root->son->brother);
+    }
     else {
         if (isdigit(root->data[0])) {
         return stof(root->data);
@@ -411,29 +409,48 @@ float getNodeData(Node* root) {
     }
 }
 
-void whil312312e (Node* root, int i, vector<string> varVector) {
+void forEvery (Node* root, int i, vector<string> varVector) {
     if (i != 0) {
         for (int j = 0; j < i; j++) {
             root = root->brother;
         }
     }
     if (root->data == "=") {
+        float value = getNodeData(root->son->brother);
         root = root->son;
-        varVector.push_back(root->data);
-        while (root->brother->data == "=") {//change
-            varVector.push_back(root->brother->son->data);
-            root = root->brother->son;
+
+        while (root->data == "=") {
+            varVector.push_back(root->son->brother->data);
+            root = root->son;
         }
-        float value = getNodeData(root->brother);
+        varVector.push_back(root->data);
         for (int j = 0; j < varVector.size(); j++) {
             variables[varVector[j]] = value;
             cout << value << endl;
         }
     }
+    else {
+        float value = getNodeData(root);
+        while (root->data != "=") {
+            root = root->son;
+        }
+        root = root->son;
+        while (root->data == "=") {
+            varVector.push_back(root->son->brother->data);
+            root = root->son;
+        }
+        varVector.push_back(root->data);
+        for (int j = 0; j < varVector.size(); j++) {
+            variables[varVector[j]] = value;
+            cout << value << endl;
+        }
+    }
+
+
 }
 
 float getResult(Node* root, int i) {
-    for (int j = 0; j < i; j++) {
+    for (int j = 0; j < i-1; j++) {
         root = root->brother;
     }
     float value = getNodeData(root);
@@ -446,10 +463,12 @@ void calculate(Node* root, vector<string> info) {
     root = root->son;
     vector<string> varVector;
     
-    while (i < info.size()-1) {
-        whil312312e(root,i, varVector);
-        varVector.clear();
-        i++;
+    while (i < info.size()) {
+        if (i != info.size() - 1) {
+            forEvery(root, i, varVector);
+            varVector.clear();
+        }
+            i++;
     }
     float result = getResult(root,i);
     cout << "Result: " << result;
