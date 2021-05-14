@@ -172,7 +172,8 @@ void insertMultBetween(Node* root, string between, int foundedMultInBetween) {
 void insertionEqualBrother(Node* root, string str, int toSon) {
     int founded = getOperationIndex(str, 0);
     int equalIndex = str.rfind('=');
-    if (equalIndex <= 0) {
+    if (equalIndex <= 0)
+    {
         if (isdigit(str[0])) 
         {
             int plusIndex = getPlusIndex(str, 0);
@@ -249,7 +250,8 @@ void insertionEqualBrother(Node* root, string str, int toSon) {
                         multIndex = multIndex2 - 1;
                         multIndex2 = getOperationIndex(between.substr(multIndex), 0);
                     }
-                    root->data = between.substr(0, multIndex);
+                    multIndex = getMultLeft(str, 0);
+                    root->data = str.substr(0, multIndex);
                 }
                 else
                 {
