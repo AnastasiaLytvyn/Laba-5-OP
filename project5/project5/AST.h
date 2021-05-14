@@ -1,9 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <stack>
 #include <vector>
-#include <map>
 using namespace std;
 
 
@@ -13,15 +11,17 @@ struct Node
     Node* son;
     Node* brother;
 };
-
 Node* getNewNode(string);
 void Insert(Node*, string);
-float getResult(Node* root);
+void insertionPlus(Node*, string, int, int, int);
+void insertMultBetween(Node*, string, int);
+void insertionEqualBrother(Node*, string, int);
+void insertionExample(Node*, string, int);
+
 int getOperationIndex(string, int);
-int getOperationIndex(string str, int start, int end);
-int getOperationPrecedence(char oper);
-int getPlusIndex(string str, int start);
-int getPlusIndex(string str, int start, int end);
-void calculate(Node* root, vector<string>);
-void insertionEqualBrother(Node* root, string str, int toSon = 0);
-void insertionPlus(Node* root, string str, int start, int end, int toSon);
+int getPlusIndex(string, int);
+int getMultIndex(string, int);
+int getPlusIndexLeft(string, int);
+int getMultLeft(string, int);
+int getMultIndexSubstr(string, int);
+int getOperationPrecedence(char);

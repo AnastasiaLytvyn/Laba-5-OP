@@ -140,16 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AST.cpp" />
+    <ClCompile Include="CalculateAST.cpp" />
     <ClCompile Include="project5.cpp" />
     <ClCompile Include="ReadFromFile.cpp" />
-    <ClCompile Include="RPN.cpp" />
-    <ClCompile Include="ShuntingYard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AST.h" />
+    <ClInclude Include="CalculateAST.h" />
     <ClInclude Include="ReadFromFile.h" />
-    <ClInclude Include="RPN.h" />
-    <ClInclude Include="ShuntingYard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

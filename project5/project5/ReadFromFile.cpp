@@ -1,11 +1,10 @@
 #include "ReadFromFile.h"
 
-string ReadFromFile::GetName()
+ReadFromFile::ReadFromFile()
 {
 	fileName = "file.txt";
 	//cout << "Enter name of file: ";
 	//cin >> fileName;
-	return fileName;
 }
 
 vector<string> ReadFromFile::ReadInfo()

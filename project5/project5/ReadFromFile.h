@@ -10,6 +10,6 @@ class ReadFromFile
 {
 	string fileName;
 public:
-	string GetName();
+	ReadFromFile();
 	vector<string> ReadInfo();
 };
