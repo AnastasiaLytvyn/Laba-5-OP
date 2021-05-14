@@ -1,3 +1,7 @@
-﻿  project5.cpp
-C:\Users\litvi\labs\n5\project5\project5\project5.cpp(22,20): warning C4018: <: несоответствие типов со знаком и без знака
-  project5.vcxproj -> C:\Users\litvi\labs\n5\project5\Debug\project5.exe
+﻿  AST.cpp
+C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\project5\AST.cpp(74,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\project5\AST.cpp(426,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\project5\AST.cpp(447,14): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\project5\AST.cpp(96): warning C4715: getOperationPrecedence: значение возвращается не при всех путях выполнения
+C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\project5\AST.cpp(410): warning C4715: getNodeData: значение возвращается не при всех путях выполнения
+  project5.vcxproj -> C:\Users\Дядя Паша\Desktop\КПІ\ВТОРОЙ_СЕМЕСТР\оп\Лабы\laba5\project5\Debug\project5.exe

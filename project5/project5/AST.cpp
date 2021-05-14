@@ -76,7 +76,6 @@ int getMultLeft(string str, int start) {
     }
     return -1;
 }
-
 int getMultIndexSubstr(string str, int start) {
     for (int i = start - 1; i >= 0; i--) {
         if (str[i] == '*' || str[i] == '/' || str[i] == '=') return i;
@@ -154,7 +153,21 @@ void insertionPlus(Node* root, string str, int start, int end,int toSon) {
     }
 }
 
-
+void insertMultBetween(Node* root, string between, int foundedMultInBetween) {
+    int end3 = between.length() - 1;
+    root->brother = getNewNode(between.substr(foundedMultInBetween, 1));
+    root = root->brother;
+    while (foundedMultInBetween > 0) {
+        root->data = between.substr(foundedMultInBetween, 1);
+        root->son = getNewNode("");
+        root = root->son;
+        root->brother = getNewNode(between.substr(foundedMultInBetween + 1, end3 - foundedMultInBetween));
+        end3 = foundedMultInBetween - 1;
+        foundedMultInBetween = getMultIndex(between, between.length() - end3);
+    }
+    end3++;
+    root->data = between.substr(0, end3);
+}
 
 void insertionEqualBrother(Node* root, string str, int toSon) {
     int founded = getOperationIndex(str, 0);
@@ -341,7 +354,13 @@ void insertionEqualBrother(Node* root, string str, int toSon) {
                 root->data = str.substr(equalIndex, 1);
                 root->son = getNewNode("");
                 root = root->son;
-                root->brother = getNewNode(between);
+                int foundedMultInBetween = getMultIndex(between, 0);
+                if (foundedMultInBetween < 0) {
+                    root->brother = getNewNode(between);
+                }
+                else {
+                    insertMultBetween(root, between, foundedMultInBetween);
+                }
                 equalIndex--;
                 int equalIndex2 = str.rfind('=', equalIndex);
                 while (equalIndex2 > 0) {
